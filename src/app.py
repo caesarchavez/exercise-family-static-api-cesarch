@@ -58,8 +58,13 @@ def new_member():
         print("Paso algo extranio")
         return "error, servidor roto", 500
 
-
-
+@app.route('/members/<int:member_id>', methods=['DELETE'])
+def delete_member(member_id):
+    try: 
+        jackson_family.delete_member(member_id)
+        return {"msj":"Miembro excomunicado", "done": True },200 
+    except: 
+        return "Fallo en la ejecucion", 500
 
 
 
