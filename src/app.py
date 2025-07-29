@@ -35,6 +35,15 @@ def handle_hello():
     members = jackson_family.get_all_members()
     return jsonify(members), 200
 
+@app.route('/members/<int:member_id>', methods=['GET'])
+def get_member(member_id):
+    try: 
+        member = jackson_family.get_member(member_id)
+        if member: 
+            return jsonify(member),200
+    except:
+        return "Este miembro es el ninio del medio",500
+
 @app.route('/members', methods=['POST'])
 def new_member():
     try: 
